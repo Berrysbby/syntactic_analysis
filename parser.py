@@ -81,7 +81,6 @@ class Parser:
         node.add_child(objects_node)
 
         # 5) Опционально: авторы/имена после объекта: "Толстого и Достоевского"
-        #    Разбираем цепочку WORD (AND WORD)*
         if self.current() and self.current().type == TokenType.WORD:
             authors = Node("Authors")
             w = self.expect(TokenType.WORD, "Ожидалось имя автора")
@@ -160,7 +159,7 @@ class Parser:
                     range_node.add_child(Node("End", end_tok.value))
                     node.add_child(range_node)
                 else:
-                    # трактуем "с 2018" как "после 2018" / "начиная с 2018"
+                    # трактуем "с " как "после" / "начиная с"
                     node.add_child(Node("After", start_tok.value))
             else:
                 break
