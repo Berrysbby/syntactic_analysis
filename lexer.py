@@ -18,7 +18,7 @@ class Lexer:
             "летопись", "рассказ", "эссе", "сборник",
         }
 
-        # RAW-синонимы/формы, которые лучше ловить без морфологии (стабильность)
+        # RAW-синонимы/формы, которые лучше ловить без морфологии 
         self._raw_to_token = {
             # Ограничители выборки
             "все": (TokenType.ALL, "весь"),
@@ -80,14 +80,14 @@ class Lexer:
                 tokens.append(Token(TokenType.NUMBER, raw, idx, raw))
                 continue
 
-            # 1) Сначала быстрые RAW-правила (самое стабильное для DSL)
+            # 1) Сначала RAW-правила 
             raw_rule = self._raw_to_token.get(raw)
             if raw_rule is not None:
                 ttype, value = raw_rule
                 tokens.append(Token(ttype, value, idx, raw))
                 continue
 
-            # 2) Потом морфология
+            # 2) морфология
             lemma = self._lemma(raw)
 
             # Команды
@@ -108,5 +108,5 @@ class Lexer:
         return tokens
 
     def _lemma(self, word: str) -> str:
-        # Берём первый разбор; для DSL достаточно + raw-правила выше решают спорные случаи
+        # Берём первый разбор
         return self.morph.parse(word)[0].normal_form
