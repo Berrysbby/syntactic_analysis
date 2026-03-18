@@ -27,7 +27,7 @@ class TokenType(Enum):
     FROM = auto()         # с
     BETWEEN = auto()      # между
 
-    PO = auto()           # "по" - контекстный токен (тема или часть диапазона)
+    PO = auto()           # "по" 
     CENTURY_WORD = auto() # век / века
     YEAR_WORD = auto()    # год / года
 
@@ -36,7 +36,7 @@ class TokenType(Enum):
 class Token:
     """
     Лексема.
-    position - индекс токена в строке (не индекс символа!)
+    position - индекс токена в строке 
     raw      - исходное слово
     value    - нормализованное значение (лемма или число)
     """
