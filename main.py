@@ -37,8 +37,6 @@ def main():
             print_result(query, True, tree=tree)
 
         except (ParseError, Exception) as e:
-            # ParseError у тебя свой, ParserError у тебя не наследуется от ParseError,
-            # поэтому сейчас ловим "как раньше" — через общий Exception.
             print_result(query, False, error=e)
 
         print()
